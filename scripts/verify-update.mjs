@@ -57,5 +57,6 @@ try {
   await expect(page.getByText('Получено', { exact: true })).toHaveCount(2);
   await mkdir('test-results', { recursive: true });
   await page.screenshot({ path: 'test-results/update-preserved.png' });
-  console.log('PASS: installed v1 → v1.1 via Service Worker; operations, categories and goals unchanged; two badges earned.');
+  console.log('PASS: installed v1 → current release via Service Worker; operations, categories and goals unchanged; two badges earned.');
 } finally { await browser.close(); server.close(); }
+

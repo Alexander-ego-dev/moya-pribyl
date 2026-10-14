@@ -1,12 +1,10 @@
-import { Award, Crown, Flame, LockKeyhole, Medal, Trophy, ChevronRight } from 'lucide-react';
+import { LockKeyhole, ChevronRight } from 'lucide-react';
 import type { Achievement } from './achievements';
-
-const icons = { first: Medal, beyond: Flame, summit: Crown, three: Award, streak: Trophy };
+import BusyaEmblem from './BusyaEmblem';
 
 export function AchievementBadge({ achievement }: { achievement: Achievement }) {
-  const Icon = icons[achievement.id];
-  return <span className={`achievement-badge ${achievement.earned ? 'earned' : 'locked'}`} aria-hidden="true">
-    <Icon size={27} strokeWidth={1.5} />
+  return <span className={`achievement-badge busya-badge tier-${achievement.id} ${achievement.earned ? 'earned' : 'locked'}`} aria-hidden="true">
+    <BusyaEmblem tier={achievement.id} />
     {!achievement.earned && <LockKeyhole className="badge-lock" size={12} />}
   </span>;
 }
@@ -14,19 +12,19 @@ export function AchievementBadge({ achievement }: { achievement: Achievement }) 
 export function AchievementPreview({ items, open }: { items: Achievement[]; open: () => void }) {
   const count = items.filter(item => item.earned).length;
   return <section className="achievements-preview">
-    <div className="row"><h2>Ваши достижения</h2><span className="muted">{count} из 5</span></div>
-    <button className="achievement-collection" onClick={open} aria-label={`Открыть достижения: получено ${count} из 5`}>
+    <div className="row"><h2>Ваши достижения</h2><span className="muted">{count} из {items.length}</span></div>
+    <button className="achievement-collection" onClick={open} aria-label={`Открыть достижения: получено ${count} из ${items.length}`}>
       <span className="badge-strip">{items.map(item => <AchievementBadge key={item.id} achievement={item} />)}</span>
       <ChevronRight size={18} />
     </button>
-    <p className="muted" role="status">{count ? `Получено значков: ${count}. Ваши результаты заслуживают внимания.` : 'У каждой цели есть своя награда. Первая вершина — выполнить цель месяца.'}</p>
+    <p className="muted" role="status">{count ? `Получено значков: ${count}. Ваша следующая высота уже ждёт.` : 'Выполните цель месяца на 100% и получите первый значок «Буся на высоте».'}</p>
   </section>;
 }
 
 export function AchievementCollection({ items }: { items: Achievement[] }) {
   return <div className="achievement-list">
-    <p className="muted">Пять знаков вашего прогресса. Прошлые месяцы тоже учитываются.</p>
-    {items.map(item => <article key={item.id} className={`achievement-item ${item.earned ? 'is-earned' : ''}`}>
+    <p className="muted">Четыре уровня Буси. Чем выше результат, тем ярче награда. Прошлые месяцы тоже учитываются.</p>
+    {items.map(item => <article key={item.id} className={`achievement-item busya-item tier-${item.id} ${item.earned ? 'is-earned' : ''}`}>
       <AchievementBadge achievement={item} />
       <div><div className="row"><h3>{item.name}</h3><span className="achievement-status">{item.earned ? 'Получено' : 'Впереди'}</span></div>
         <p>{item.description}</p>
@@ -36,6 +34,6 @@ export function AchievementCollection({ items }: { items: Achievement[] }) {
         <small>{Math.min(item.target, item.progress).toLocaleString('ru-RU', { maximumFractionDigits: 1 })} / {item.target} {item.unit}</small>
       </div>
     </article>)}
-    <p className="muted">Значки отражают текущие сохранённые данные. Если изменить операции или цели, результат пересчитается. Серии засчитываются после окончания месяцев; месяц без цели прерывает серию, но не считается провалом.</p>
+    <p className="muted">Каждый уровень считается по чистой прибыли одного месяца относительно его цели. При достижении 200% открываются все четыре значка. Если изменить операции или цели, результат пересчитается.</p>
   </div>;
 }

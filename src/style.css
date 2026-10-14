@@ -1,4 +1,12 @@
 @import "tailwindcss";
+.achievement-badge.busya-badge{width:64px;height:72px;clip-path:none;background:transparent!important;color:var(--text);overflow:visible}
+.busya-badge .busya-emblem{width:100%!important;height:100%;filter:none}
+.busya-badge.locked .busya-emblem{filter:grayscale(1);opacity:.38}
+.busya-badge .badge-lock{right:2px;bottom:1px;width:16px;height:16px;padding:2px;background:var(--surface);border-radius:50%}
+.busya-item{--badge-accent:#c58b2b}.busya-item.tier-beyond{--badge-accent:#2485ba}.busya-item.tier-summit{--badge-accent:#a25ad3}.busya-item.tier-ultra{--badge-accent:#ce648e}
+.busya-item.is-earned .track i{background:var(--badge-accent)}
+.busya-item.is-earned .achievement-status{background:var(--surface);border-color:var(--badge-accent);color:var(--text)}
+@media(max-width:380px){.achievement-badge.busya-badge{width:51px;height:58px}}
 html[data-theme=halloween]{--bg:#151019;--surface:#211924;--text:#fbf1e7;--muted:#bcacbc;--line:#3d3041;--accent:#ffab62;--on-accent:#22130a;color-scheme:dark}
 .halloween-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding:22px 20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--accent)}
 .halloween-banner h2{font-size:23px;line-height:1.2;margin-top:10px;color:var(--text)}
