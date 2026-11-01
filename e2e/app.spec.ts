@@ -4,7 +4,7 @@ test('достижения, сливовая тема и данные после
  await page.getByRole('button', { name: 'Настройки', exact: true }).click();
  await page.getByRole('combobox', { name: 'Тема', exact: true }).selectOption('plum');
  await expect(page.locator('html')).toHaveAttribute('data-theme', 'plum');
- await expect(page.getByText('M&M · 1.3', { exact: true })).toBeVisible();
+ await expect(page.getByText('M&M · 1.3.1', { exact: true })).toBeVisible();
  await expect(page.getByText('Обновление без удаления', { exact: true })).toBeVisible();
  await page.getByRole('button', { name: 'Закрыть', exact: true }).click();
  await expect(page.getByRole('region', { name: 'Прибыль и цель месяца' })).toBeVisible();

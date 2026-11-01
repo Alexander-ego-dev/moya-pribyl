@@ -1,4 +1,6 @@
 /* November edition: the Halloween palette becomes a permanent, quiet theme. */
+.praise-notice{position:fixed;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:min(calc(100% - 32px),500px);z-index:30;border:1px solid var(--accent);box-shadow:0 8px 28px #0003;font-weight:600;padding:14px 16px;margin:0;animation:praise-in .25s ease-out}
+@keyframes praise-in{from{opacity:0;translate:0 -12px}to{opacity:1;translate:0 0}}
 html[data-theme=plum]{--bg:#151019;--surface:#211924;--text:#fbf1e7;--muted:#bcacbc;--line:#443649;--accent:#ffab62;--on-accent:#22130a;color-scheme:dark}
 .app{padding-left:20px;padding-right:20px}
 header{margin-bottom:28px}
