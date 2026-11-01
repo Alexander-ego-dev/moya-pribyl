@@ -1,13 +1,13 @@
 import {test,expect} from '@playwright/test';
-test('достижения, хэллоуинская тема и данные после перезагрузки', async ({ page, context }) => {
+test('достижения, сливовая тема и данные после перезагрузки', async ({ page, context }) => {
  await page.goto('/');
  await page.getByRole('button', { name: 'Настройки', exact: true }).click();
- await page.getByRole('combobox', { name: 'Тема', exact: true }).selectOption('halloween');
- await expect(page.locator('html')).toHaveAttribute('data-theme', 'halloween');
- await expect(page.getByText('M&M · 1.2', { exact: true })).toBeVisible();
+ await page.getByRole('combobox', { name: 'Тема', exact: true }).selectOption('plum');
+ await expect(page.locator('html')).toHaveAttribute('data-theme', 'plum');
+ await expect(page.getByText('M&M · 1.3', { exact: true })).toBeVisible();
  await expect(page.getByText('Обновление без удаления', { exact: true })).toBeVisible();
  await page.getByRole('button', { name: 'Закрыть', exact: true }).click();
- await expect(page.getByRole('complementary', { name: 'Хэллоуинская тема включена' })).toBeVisible();
+ await expect(page.getByRole('region', { name: 'Прибыль и цель месяца' })).toBeVisible();
  await page.getByRole('button', { name: /Открыть достижения/ }).click();
  await expect(page.locator('.achievement-item')).toHaveCount(4);
  await expect(page.getByText('Получено', { exact: true })).toHaveCount(0);
@@ -28,7 +28,7 @@ test('достижения, хэллоуинская тема и данные п
  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
  await page.reload();
  await expect(page.getByRole('heading', { name: '20 000 ₽' })).toBeVisible();
- await expect(page.locator('html')).toHaveAttribute('data-theme', 'halloween');
+ await expect(page.locator('html')).toHaveAttribute('data-theme', 'plum');
  await page.screenshot({ path: 'test-results/halloween-home.png', fullPage: true });
  await page.locator('.badge-strip').screenshot({ path: 'test-results/busya-badges.png' });
  await page.setViewportSize({ width: 320, height: 568 });

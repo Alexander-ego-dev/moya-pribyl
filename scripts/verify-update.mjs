@@ -1,4 +1,4 @@
-/* global URL, navigator, indexedDB */
+/* global URL, navigator, indexedDB, localStorage */
 // Run after saving the previous production dist to .update-check/previous-dist
 // and building the next release into dist. Uses a single origin throughout.
 import { createServer } from 'node:http';
@@ -24,6 +24,9 @@ try {
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4174/');
   await page.getByRole('heading', { name: 'Обзор', exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Настройки', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Тема', exact: true }).selectOption('halloween');
+  await page.getByRole('button', { name: 'Закрыть', exact: true }).click();
   await page.getByRole('button', { name: 'Доход', exact: true }).click();
   await page.getByLabel('Сумма, ₽', { exact: true }).fill('12345,67');
   await page.getByRole('combobox', { name: 'Категория', exact: true }).selectOption({ label: 'Татуировки' });
@@ -53,10 +56,12 @@ try {
   await expect(page.getByRole('heading', { name: 'Ваши достижения' })).toBeVisible({ timeout: 30000 });
   await expect(page.getByRole('heading', { name: '12 345,67 ₽' })).toBeVisible();
   expect(await snapshot()).toEqual(before);
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'plum');
+  expect(await page.evaluate(() => localStorage.getItem('theme'))).toBe('plum');
   await page.getByRole('button', { name: /Открыть достижения/ }).click();
   await expect(page.getByText('Получено', { exact: true })).toHaveCount(2);
   await mkdir('test-results', { recursive: true });
   await page.screenshot({ path: 'test-results/update-preserved.png' });
-  console.log('PASS: installed v1 → current release via Service Worker; operations, categories and goals unchanged; two badges earned.');
+  console.log('PASS: installed v1.2 → v1.3 via Service Worker; operations, categories and goals unchanged; two badges earned.');
 } finally { await browser.close(); server.close(); }
 

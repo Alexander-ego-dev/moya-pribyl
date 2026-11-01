@@ -1,0 +1,51 @@
+/* November edition: the Halloween palette becomes a permanent, quiet theme. */
+html[data-theme=plum]{--bg:#151019;--surface:#211924;--text:#fbf1e7;--muted:#bcacbc;--line:#443649;--accent:#ffab62;--on-accent:#22130a;color-scheme:dark}
+.app{padding-left:20px;padding-right:20px}
+header{margin-bottom:28px}
+.brand{font-size:17px;letter-spacing:.3px}
+.brand span{color:var(--accent)}
+header>.icon{border:1px solid var(--line);border-radius:50%;width:44px;height:44px;background:var(--surface)}
+.overview-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+.overview-heading h1{font-size:29px}
+.month-nav{margin:0;padding:0;border:1px solid var(--line);border-radius:13px;background:var(--surface);gap:0;min-width:0}
+.month-nav .icon{min-width:28px;width:28px}
+.month-control{font-size:12px!important;white-space:nowrap}
+section{border:0;padding:22px 0}
+.overview-card{border:1px solid var(--line);border-radius:22px;padding:22px;background:var(--surface);box-shadow:0 12px 32px #0000000a}
+html[data-theme=plum] .overview-card{background:linear-gradient(135deg,#2b202e,#211924 65%)}
+.hero{padding:0}
+.hero .eyebrow{text-transform:none;letter-spacing:0;font-size:15px;font-weight:400}
+.hero .amount{font-size:clamp(32px,10.8vw,56px);font-weight:650;margin:12px 0 14px;letter-spacing:-2px;line-height:1.15}
+.month-change{display:inline-block;font-size:12px;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:5px 8px;margin-bottom:14px}
+html[data-theme=plum] .month-change{background:#ffab6212;color:var(--accent);border-color:#ffab6229}
+.split{padding:18px 0;border-top:1px solid var(--line);gap:16px}
+.split>div+div{padding-left:16px}
+.split small{font-size:13px}
+.split strong{font-size:clamp(15px,4.8vw,23px);letter-spacing:-.4px}
+.goal{padding:14px 0 0;border-top:1px solid var(--line)}
+.goal h2{font-size:16px}
+.goal .row{min-height:34px}
+.goal-amount{font-size:21px}
+.goal .muted{font-size:13px;margin-top:10px}
+.track{height:9px;border-radius:99px;margin-top:12px;background:var(--line)}
+.track i{border-radius:inherit;background:var(--accent)}
+.actions{padding-top:14px;gap:10px;margin-bottom:6px}
+.actions button{border-radius:13px;min-width:0;min-height:52px;font-size:16px}
+.secondary{background:var(--surface);border:1px solid var(--line)}
+.today{padding:17px 14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;gap:10px}
+.today strong{font-size:clamp(12px,3.8vw,18px)}
+.operation{margin-top:10px;padding:16px 13px;border:1px solid var(--line);border-radius:15px;background:var(--surface);gap:10px}
+.operation:last-child{border-bottom:1px solid var(--line)}
+.operation-sign{width:30px;height:30px;color:var(--accent)}
+.operation-text strong{font-size:13px}
+.operation>strong{font-size:13px;max-width:44%;overflow-wrap:anywhere}
+.history-row{padding:17px 8px;border-radius:9px}
+.history-row:nth-child(2n){background:var(--surface)}
+.savings{border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:18px;background:var(--surface)}
+.savings h2{font-size:19px}
+nav{background:var(--bg);padding-top:9px}
+nav button.active{color:var(--accent)}
+dialog{border:1px solid var(--line);border-radius:22px 22px 0 0}
+.sheet-header{position:sticky;top:-20px;background:var(--surface);z-index:1;padding-top:8px;padding-bottom:8px}
+input,select,textarea{border-radius:12px}
+@media(max-width:350px){.app{padding-left:14px;padding-right:14px}.overview-heading{gap:6px}.overview-heading h1{font-size:25px}.month-nav .icon{min-width:24px;width:24px}.month-control{font-size:11px!important}.overview-card{padding:18px}.split strong{font-size:16px}.operation{padding:13px 9px;gap:7px}.operation-text strong{font-size:12px}.operation>strong{font-size:12px}}
